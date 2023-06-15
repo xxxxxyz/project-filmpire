@@ -3,22 +3,17 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: "airbnb",
+  extends: ["plugin:react/recommended", "airbnb"],
   parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
     ecmaVersion: "latest",
     sourceType: "module",
   },
+  plugins: ["react"],
   rules: {
     quotes: [2, "double"],
-    "react/function-component-definition": [
-      2,
-      {
-        namedComponents: "arrow-function",
-        unnamedComponents: "arrow-function",
-      },
-    ],
-    "import/no-useless-path-segments": ["error", { noUselessIndex: false }],
-    "arrow-body-style": "off",
     "import/extensions": 0,
     "react/prop-types": 0,
     "linebreak-style": 0,
@@ -40,6 +35,10 @@ module.exports = {
     "react/no-array-index-key": 0,
     "no-param-reassign": 0,
     "react/react-in-jsx-scope": 0,
+    "react/function-component-definition": [2, {
+      "namedComponents": "arrow-function",
+      "unnamedComponents": "arrow-function"
+    }],
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
