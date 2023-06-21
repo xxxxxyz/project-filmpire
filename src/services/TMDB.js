@@ -9,8 +9,8 @@ export const tmdbApi = createApi({
   endpoints: (builder) => ({
     //* Get Movies by [Type]
     getMovies: builder.query({
-      query: () => {
-        return `movie/popular?page=${page}&api_key=${tmdbApiKey}`;
+      query: ({ genreIdOrCategoryName, page, searchQuery }) => {
+        return `、search/movie/popular?page=${page}&api_key=${tmdbApiKey}`;
       },
     }),
   }),
