@@ -12,7 +12,7 @@ import MovieList from "../MovieList/MovieList";
 
 const Movies = () => {
   const { data, error, isFetching } = useGetMoviesQuery();
-
+  console.log(data);
   if (isFetching) {
     return (
       <Box display="flex" justifyContent="center">
