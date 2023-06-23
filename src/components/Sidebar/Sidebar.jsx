@@ -13,13 +13,16 @@ import {
 
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/styles";
+import { useDispatch, useSelector } from "react-redux";
+import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
+
 import useStyles from "./styles";
 import { useGetGenresQuery } from "../../services/TMDB";
 import genreIcons from "../../assets/genres";
 
 const categories = [
   { label: "Popular", value: "popular" },
-  { label: "Top Rated", value: "top_rate" },
+  { label: "Top Rated", value: "top_rated" },
   { label: "Upcoming", value: "upcoming" },
 ];
 
@@ -36,10 +39,14 @@ const redLogo =
   "https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png";
 
 const Sidebar = ({ setMobileOpen }) => {
+  const { genreIdOrCategoryName } = useSelector(
+    (state) => state.currentGenreOrCategory
+  );
   const theme = useTheme();
   const classes = useStyles();
   const { data, isFetching } = useGetGenresQuery();
   console.log(data);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -55,8 +62,13 @@ const Sidebar = ({ setMobileOpen }) => {
         <ListSubheader>Categories</ListSubheader>
         {categories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
-            <ListItem>
-              <ListItemButton onClick={() => {}}>
+            <ListItem
+              style={{ padding: "10% 0 " }}
+              onClick={() => {
+                dispatch(selectGenreOrCategory(value));
+              }}
+            >
+              <ListItemButton>
                 <ListItemIcon>
                   <img
                     src={genreIcons[label.toLowerCase()]}
@@ -80,7 +92,12 @@ const Sidebar = ({ setMobileOpen }) => {
         ) : (
           data.genres.map(({ name, id }) => (
             <Link key={name} className={classes.links} to="/">
-              <ListItem>
+              <ListItem
+                style={{ padding: "10% 0" }}
+                onClick={() => {
+                  dispatch(selectGenreOrCategory(id));
+                }}
+              >
                 <ListItemButton onClick={() => {}}>
                   <ListItemIcon>
                     <img
