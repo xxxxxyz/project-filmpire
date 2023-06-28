@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Modal,
+  Dialog,
   Typography,
   Button,
   ButtonGroup,
   Grid,
   Box,
   CircularProgress,
-  useMediaQuery,
   Rating,
 } from "@mui/material";
 import {
@@ -28,7 +28,11 @@ import genreIcons from "../../assets/genres";
 
 import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
 
-import { useGetMovieQuery } from "../../services/TMDB";
+import {
+  useGetGenresQuery,
+  useGetMovieQuery,
+  useGetRecommendationsQuery,
+} from "../../services/TMDB";
 import useStyles from "./styles";
 import { MovieList } from "../index";
 
@@ -37,6 +41,12 @@ const MovieInformation = () => {
   const { data, isFetching, error } = useGetMovieQuery(id);
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+
+  const { data: recommendations } = useGetRecommendationsQuery({
+    list: "/recommendations",
+    movie_id: id,
+  });
 
   const isMovieFavorited = false;
   const isMovieWatchlisted = false;
@@ -60,6 +70,8 @@ const MovieInformation = () => {
       </Box>
     );
   }
+
+  console.log(data);
 
   return (
     <Grid container className={classes.containerSpaceAround}>
@@ -125,7 +137,7 @@ const MovieInformation = () => {
         </Typography>
         <Grid item container spacing={2}>
           {data &&
-            data.credits?.cast
+            data?.credits?.cast
               ?.map(
                 (character, i) =>
                   character.profile_path && (
@@ -140,14 +152,14 @@ const MovieInformation = () => {
                     >
                       <img
                         className={classes.castImage}
-                        src={`http://image.tmdb.org/t/p/w500/${character.profile_path}`}
+                        src={`https://image.tmdb.org/t/p/w500/${character.profile_path}`}
                         alt={character.name}
                       />
-                      <Typography color="textPrimary">
+                      <Typography color="textPrimary" align="center">
                         {character?.name}
                       </Typography>
-                      <Typography color="textSecondary">
-                        {character?.character.split("/")[0]}
+                      <Typography color="textSecondary" align="center">
+                        {character.character.split("/")[0]}
                       </Typography>
                     </Grid>
                   )
@@ -174,7 +186,11 @@ const MovieInformation = () => {
                 >
                   IMDB
                 </Button>
-                <Button onClick={() => {}} href="#" endIcon={<Theaters />}>
+                <Button
+                  onClick={() => setOpen(true)}
+                  href="#"
+                  endIcon={<Theaters />}
+                >
                   Trailer
                 </Button>
               </ButtonGroup>
@@ -212,6 +228,35 @@ const MovieInformation = () => {
           </div>
         </Grid>
       </Grid>
+      <Box marginTop="5rem" width="100%">
+        <Typography variant="h3" gutterBottom align="center">
+          You might also like
+        </Typography>
+        {recommendations ? (
+          <MovieList movies={recommendations} numberOfMovies={12} />
+        ) : (
+          <Box>Sorry, nothing was found.</Box>
+        )}
+      </Box>
+      {console.log(data)}
+      <Dialog
+        closeAfterTransition
+        className={classes.modal}
+        open={open}
+        onClose={() => setOpen(false)}
+      >
+        {data?.videos?.results?.length > 0 && (
+          <iframe
+            autoPlay
+            className={classes.video}
+            // frameBorder="0"
+            title="Trailer"
+            src={`https://www.youtube.com/embed/${data.videos.results[0]}`}
+            allow="autoplay"
+            tabIndex={-1}
+          />
+        )}
+      </Dialog>
     </Grid>
   );
 };
