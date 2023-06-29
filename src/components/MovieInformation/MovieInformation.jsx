@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   Modal,
-  Dialog,
   Typography,
   Button,
   ButtonGroup,
@@ -238,8 +237,8 @@ const MovieInformation = () => {
           <Box>Sorry, nothing was found.</Box>
         )}
       </Box>
-      {console.log(data)}
-      <Dialog
+      {console.log(data.videos.results[0].key)}
+      <Modal
         closeAfterTransition
         className={classes.modal}
         open={open}
@@ -253,10 +252,9 @@ const MovieInformation = () => {
             title="Trailer"
             src={`https://www.youtube.com/embed/${data.videos.results[0]}`}
             allow="autoplay"
-            tabIndex={-1}
           />
         )}
-      </Dialog>
+      </Modal>
     </Grid>
   );
 };
