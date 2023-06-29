@@ -33,7 +33,7 @@ import {
   useGetRecommendationsQuery,
 } from "../../services/TMDB";
 import useStyles from "./styles";
-import { MovieList } from "../index";
+import { Actors, MovieList } from "../index";
 
 const MovieInformation = () => {
   const { id } = useParams();
@@ -153,6 +153,7 @@ const MovieInformation = () => {
                         className={classes.castImage}
                         src={`https://image.tmdb.org/t/p/w500/${character.profile_path}`}
                         alt={character.name}
+                        onClick={() => <Actors />}
                       />
                       <Typography color="textPrimary" align="center">
                         {character?.name}
