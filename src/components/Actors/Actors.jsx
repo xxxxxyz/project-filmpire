@@ -8,10 +8,9 @@ import {
   Pagination,
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import useStyles from "./styles";
 
-import { useDispatch, useSelector } from "react-redux";
 import {
   useGetActorQuery,
   useGetMoviesByActorIdQuery,
@@ -20,9 +19,9 @@ import MovieList from "../MovieList/MovieList";
 
 const Actors = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const { id } = useParams();
-  const [page, setPage] = useState(1);
+  const page = 1;
+  const navigate = useNavigate();
   const { data, isFetching, error } = useGetActorQuery(id);
   const { data: movies } = useGetMoviesByActorIdQuery({ id, page });
 
@@ -37,7 +36,11 @@ const Actors = () => {
   if (error) {
     return (
       <Box display="flex" justifyContent="center">
-        <Link to="/">Something has gone wrong - Go Back</Link>
+        <Button
+          onClick={() => {
+            navigate(-1);
+          }}
+        ></Button>
       </Box>
     );
   }
@@ -52,30 +55,50 @@ const Actors = () => {
         />
       </Grid>
       <Grid item container direction="column" lg={7}>
-        <Typography variant="h2" align="left" gutterBottom>
+        <Typography
+          variant="h2"
+          gutterBottom
+          style={{ display: "flex", padding: "20px" }}
+        >
           {data?.name}
         </Typography>
-        <Typography variant="h5" align="left" gutterBottom>
+        <Typography
+          variant="h5"
+          gutterBottom
+          style={{ display: "flex", padding: "20px" }}
+        >
           Born: {new Date(data?.birthday).toDateString()}
         </Typography>
-        <Typography variant="body1" align="justify" paragraph>
+        <Typography
+          variant="body1"
+          align="justify"
+          paragraph
+          style={{ display: "flex", padding: "20px" }}
+        >
           {data?.biography || "Sorry, no other information yet..."}
         </Typography>
-        <Box display="flex">
-          <Button size="large" variant="contained" onClick={() => {}}>
+        <Box display="flex" marginTop="2rem" justifyContent="space-around">
+          <Button
+            size="large"
+            variant="contained"
+            target="_blank"
+            color="primary"
+            href={`http://www.imdb.com/name/${data?.imdb_id}`}
+          >
             IMDB
           </Button>
           <Button
             size="large"
             href="#text-buttons"
             startIcon={<ArrowBack />}
-            onClick={() => {}}
+            onClick={() => navigate(-1)}
+            color="primary"
           >
             BACK
           </Button>
         </Box>
       </Grid>
-      <Box marginTop="5rem" width="100%">
+      <Box margin="5rem 0" width="100%">
         <Typography variant="h3" align="center" gutterBottom>
           Movies
         </Typography>
