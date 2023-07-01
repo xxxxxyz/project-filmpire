@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Typography,
-  Button,
-  Box,
-  Grid,
-  CircularProgress,
-  Pagination,
-} from "@mui/material";
+import { Typography, Button, Box, Grid, CircularProgress } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import { useParams, useNavigate } from "react-router-dom";
 import useStyles from "./styles";
@@ -16,11 +9,12 @@ import {
   useGetMoviesByActorIdQuery,
 } from "../../services/TMDB";
 import MovieList from "../MovieList/MovieList";
+import Pagination from "../Pagination/Pagination";
 
 const Actors = () => {
   const classes = useStyles();
   const { id } = useParams();
-  const page = 1;
+  const [page, setPage] = useState(1);
   const navigate = useNavigate();
   const { data, isFetching, error } = useGetActorQuery(id);
   const { data: movies } = useGetMoviesByActorIdQuery({ id, page });
@@ -44,7 +38,7 @@ const Actors = () => {
       </Box>
     );
   }
-  console.log(data);
+  console.log(movies);
   return (
     <Grid container className={classes.containerSpaceAround}>
       <Grid item sm={12} lg={4} align="center">
@@ -103,7 +97,11 @@ const Actors = () => {
           Movies
         </Typography>
         {movies && <MovieList movies={movies} numberOfMovies={12} />}
-        <Pagination />
+        <Pagination
+          currentPage={page}
+          setPage={setPage}
+          totalPages={movies?.total_pages}
+        />
       </Box>
     </Grid>
   );
