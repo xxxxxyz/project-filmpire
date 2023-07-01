@@ -10,12 +10,18 @@ const Search = () => {
   const classes = useStyles();
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
+  const location = useLocation();
+  const isLargeScreen = window.matchMedia("(min-width: 768px)").matches;
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       dispatch(searchMovie(query));
     }
   };
+
+  if (!isLargeScreen) {
+    return null;
+  }
 
   return (
     <div className={classes.searchContainer}>

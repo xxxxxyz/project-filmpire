@@ -1,99 +1,95 @@
 import React, { useState } from "react";
-import { Typography, Button, Box, Grid, CircularProgress } from "@mui/material";
+import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
 import { ArrowBack } from "@mui/icons-material";
-import { useParams, useNavigate } from "react-router-dom";
-import useStyles from "./styles";
 
+import useStyles from "./styles";
 import {
   useGetActorQuery,
   useGetMoviesByActorIdQuery,
 } from "../../services/TMDB";
-import MovieList from "../MovieList/MovieList";
-import Pagination from "../Pagination/Pagination";
+import { MovieList, Pagination } from "../index";
 
-const Actors = () => {
+function Actors() {
   const classes = useStyles();
-  const { id } = useParams();
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
+  const { id } = useParams();
   const { data, isFetching, error } = useGetActorQuery(id);
   const { data: movies } = useGetMoviesByActorIdQuery({ id, page });
 
   if (isFetching) {
     return (
-      <Box display="flex" justifyContent="center">
-        <CircularProgress />
+      <Box display="flex" alignItems="center" justifyContent="center">
+        <CircularProgress size="8rem" />
       </Box>
     );
   }
 
   if (error) {
     return (
-      <Box display="flex" justifyContent="center">
+      <Box display="flex" alignItems="center" justifyContent="center">
         <Button
-          onClick={() => {
-            navigate(-1);
-          }}
-        ></Button>
+          startIcon={<ArrowBack />}
+          onClick={() => navigate(-1)}
+          color="primary"
+        >
+          Go Back
+        </Button>
       </Box>
     );
   }
-  console.log(movies);
+
   return (
-    <Grid container className={classes.containerSpaceAround}>
-      <Grid item sm={12} lg={4} align="center">
-        <img
-          className={classes.image}
-          src={`https://image.tmdb.org/t/p/w780/${data?.profile_path}`}
-          alt={data?.name}
-        />
+    <>
+      <Grid container spacing={3}>
+        <Grid item lg={5} xl={4}>
+          <img
+            className={classes.image}
+            src={`https://image.tmdb.org/t/p/w780/${data?.profile_path}`}
+            alt={data.name}
+          />
+        </Grid>
+        <Grid
+          item
+          lg={7}
+          xl={8}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+          <Typography variant="h2" gutterBottom>
+            {data?.name}
+          </Typography>
+          <Typography variant="h5" gutterBottom>
+            Born: {new Date(data?.birthday).toDateString()}
+          </Typography>
+          <Typography variant="body1" align="justify" paragraph>
+            {data?.biography || "Sorry, no biography yet..."}
+          </Typography>
+          <Box className={classes.btns}>
+            <Button
+              variant="contained"
+              color="primary"
+              target="_blank"
+              href={`https://www.imdb.com/name/${data?.imdb_id}`}
+            >
+              IMDB
+            </Button>
+            <Button
+              startIcon={<ArrowBack />}
+              onClick={() => navigate(-1)}
+              color="primary"
+            >
+              Back
+            </Button>
+          </Box>
+        </Grid>
       </Grid>
-      <Grid item container direction="column" lg={7}>
-        <Typography
-          variant="h2"
-          gutterBottom
-          style={{ display: "flex", padding: "20px" }}
-        >
-          {data?.name}
-        </Typography>
-        <Typography
-          variant="h5"
-          gutterBottom
-          style={{ display: "flex", padding: "20px" }}
-        >
-          Born: {new Date(data?.birthday).toDateString()}
-        </Typography>
-        <Typography
-          variant="body1"
-          align="justify"
-          paragraph
-          style={{ display: "flex", padding: "20px" }}
-        >
-          {data?.biography || "Sorry, no other information yet..."}
-        </Typography>
-        <Box display="flex" marginTop="2rem" justifyContent="space-around">
-          <Button
-            size="large"
-            variant="contained"
-            target="_blank"
-            color="primary"
-            href={`http://www.imdb.com/name/${data?.imdb_id}`}
-          >
-            IMDB
-          </Button>
-          <Button
-            size="large"
-            href="#text-buttons"
-            startIcon={<ArrowBack />}
-            onClick={() => navigate(-1)}
-            color="primary"
-          >
-            BACK
-          </Button>
-        </Box>
-      </Grid>
-      <Box margin="5rem 0" width="100%">
-        <Typography variant="h3" align="center" gutterBottom>
+      <Box margin="2rem 0">
+        <Typography variant="h2" gutterBottom align="center">
           Movies
         </Typography>
         {movies && <MovieList movies={movies} numberOfMovies={12} />}
@@ -103,8 +99,8 @@ const Actors = () => {
           totalPages={movies?.total_pages}
         />
       </Box>
-    </Grid>
+    </>
   );
-};
+}
 
 export default Actors;

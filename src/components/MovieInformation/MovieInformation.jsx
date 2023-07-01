@@ -100,10 +100,7 @@ const MovieInformation = () => {
             </Typography>
           </Box>
           <Typography variant="h6" align="center" gutterBottom>
-            {data?.runtime}min /
-            {data?.spoken_languages.length > 0
-              ? `${data?.spoken_languages[0].name}`
-              : ""}
+            {data?.runtime}min | Language: {data?.spoken_languages[0].name}
           </Typography>
         </Grid>
         <Grid item className={classes.genresContainer}>
@@ -125,7 +122,7 @@ const MovieInformation = () => {
             </Link>
           ))}
         </Grid>
-        <Typography variant="h5" gutterBottom style={{ marginTop: "10px" }}>
+        <Typography variant="h5" gutterBottom style={{ marginTop: "20px" }}>
           Overview
         </Typography>
         <Typography style={{ marginBottom: "2rem" }}>
@@ -155,10 +152,10 @@ const MovieInformation = () => {
                         alt={character.name}
                         onClick={() => <Actors />}
                       />
-                      <Typography color="textPrimary" align="center">
+                      <Typography color="textPrimary">
                         {character?.name}
                       </Typography>
-                      <Typography color="textSecondary" align="center">
+                      <Typography color="textSecondary">
                         {character.character.split("/")[0]}
                       </Typography>
                     </Grid>
