@@ -1,70 +1,87 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/github_username/repo_name">
+    <img src="https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png" alt="Logo" width="120" height="46">
+  </a>
 
-In the project directory, you can run:
+<h3 align="center">Filmpire</h3>
 
-### `npm start`
+  <p align="center">
+    Filmpire Is a Netflix Clone App With IMDB Features.
+    <br />
+    <a href="https://github.com/xxxxxyz/project-filmpire"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://react-practice-filmpire.netlify.app/">View Demo</a>
+  </p>
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<!-- TABLE OF CONTENTS -->
+<summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About the project</a>
+      <ul>
+        <li><a href="#features">Features</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#demo">Demo</a>
+      <ul>
+        <li><a href="#how-to-start-in-local">How to start in local</a></li>
+      </ul>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<!-- ABOUT THE PROJECT -->
+## About the project
 
-### `npm test`
+![Product-default-screenshot](https://github.com/xxxxxyz/project-filmpire/blob/main/src/assets/images/Dark%20Mode.png?raw=true)
+ 
+Filmpire is a practice project and it is an online platform dedicated to film entusiasts and movie lovers. The goal of the project is to polish and deepen the understanding of React, Redux, Material UI and Alan AI integration by implementing various features. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Features
+The key **features** of this app:
+  <ul>
+    <li>Movie Catalog</li>
+    <li>Movie Details and Reviews</li>
+    <li>Cast Details</li>
+    <li>Search Feature</li>
+    <li>User Profiles(Authentication)</li>
+    <li>Watchlist and Favorite list</li>
+    <li>Dark and light mode</li>
+    <li>AI voice assistant and commands on movie genre selection and random show</li>
+  </ul>
 
-### `npm run build`
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<!-- DEMO -->
+## Demo
+<a href="https://react-practice-filmpire.netlify.app/">Demo Link &rarr; </a> 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### How to start in local
+1. Prerequisites (Install npm)
+   ```sh
+   npm install -g npm
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the Repo
+   ```sh
+   git clone git@github.com:xxxxxyz/project-filmpire.git
 
-### `npm run eject`
+2. Install dependencies
+   ```sh
+   npm install
+3. Start the React app
+   ```sh
+   npm start
+Once the command is done running, your React app will open on your local host on your default browser.
+<br/>
+      https://localhost:3000
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contact
+If you would like to know more details about this project, additional information will be uploaded <a href="www.zoeyxyz.com">here</a> soon.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
