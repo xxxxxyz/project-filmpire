@@ -1,4 +1,4 @@
-
+<a name="readme-top"></a>
 
 <!-- PROJECT LOGO -->
 <br />
@@ -42,7 +42,7 @@
 
 ![Product-default-screenshot](https://github.com/xxxxxyz/project-filmpire/blob/main/src/assets/images/Dark%20Mode.png?raw=true)
  
-Filmpire is a practice project and it is an online platform dedicated to film entusiasts and movie lovers. The goal of the project is to polish and deepen the understanding of React, Redux, Material UI and Alan AI integration by implementing various features. 
+Filmpire is a practice project, and it is an online platform dedicated to film enthusiasts and movie lovers. The project aims to polish and deepen the understanding of React, Redux, Material UI and Alan AI integration by implementing various features. 
 
 ### Features
 The key **features** of this app:
@@ -84,4 +84,6 @@ Once the command is done running, your React app will open on your local host on
 
 ## Contact
 If you would like to know more details about this project, additional information will be uploaded <a href="www.zoeyxyz.com">here</a> soon.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
