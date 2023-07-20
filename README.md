@@ -10,7 +10,7 @@
 <h3 align="center">Filmpire</h3>
 
   <p align="center">
-    Filmpire Is a Netflix Clone App With IMDB Features.
+    Filmpire is a Netflix Clone App With IMDB Features.
     <br />
     <a href="https://github.com/xxxxxyz/project-filmpire"><strong>Explore the docs »</strong></a>
     <br />
